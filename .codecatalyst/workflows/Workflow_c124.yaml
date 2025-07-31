@@ -18,16 +18,15 @@ Actions:
     # Required; You can use an environment to access AWS resources.
     Environment:
       Name: bucket-creation
-    # Specifies the source and/or artifacts to pass to the action as input.
     Inputs:
-      # Optional
       Sources:
-        - WorkflowSource # This specifies that the action requires this Workflow as a source
+        - WorkflowSource
     Compute:
       Type: EC2
-      Fleet: Linux.x86-64.Large # Defines the action's properties.
+      Fleet: Linux.x86-64.Large
     Configuration:
       Region: us-east-1
+      CdkCliVersion: 2.1023.0
   AWSCDKDeploy_81:
     # Identifies the action. Do not modify this value.
     Identifier: aws/cdk-deploy@v2.0.2
@@ -41,7 +40,10 @@ Actions:
         - WorkflowSource # This specifies that the action requires this Workflow as a source
     Compute:
       Type: EC2
+      Fleet: Linux.x86-64.Large
     Configuration:
       StackName: CdkS3BucketStack
       Region: us-east-1
       CdkCliVersion: 2.1023.0
+    DependsOn:
+      - AWSCDKBootstrap_9d
